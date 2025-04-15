@@ -81,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'openwisp_utils.db',
         'TEST': {
-            'NAME': 'openwisp_utils.db',
+            'NAME': 'openwisp_utils_test.db',
         },
     }
 }
