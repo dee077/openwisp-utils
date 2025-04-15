@@ -29,7 +29,7 @@ jobs:
           - django~=4.2.0
           - django~=5.0.0
           - django~=5.1.0
-          - django~=5.2rc0
+          - django~=5.2.0
         exclude:
           # Django 5.0+ requires Python >=3.10
           - python-version: "3.9"
