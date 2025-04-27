@@ -1,3 +1,4 @@
+from channels.testing import ChannelsLiveServerTestCase
 from django.urls import reverse
 from selenium.common.exceptions import JavascriptException, NoSuchElementException
 from selenium.webdriver import ActionChains
@@ -9,6 +10,8 @@ from .utils import ChannelsLiveServerTestCase, SeleniumTestMixin
 
 
 class TestMenu(SeleniumTestMixin, ChannelsLiveServerTestCase):
+    serve_static = True
+    
     def tearDown(self):
         super().tearDown()
         # Clear local storage
