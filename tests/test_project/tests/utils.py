@@ -194,8 +194,6 @@ class SeleniumTestMixin(BaseSeleniumTestMixin, TestConfigMixin):
         self.wait_for_visibility(By.CSS_SELECTOR, f".{filter_class} .filter-options")
 
 
-
-
 class MockUser:
     def __init__(self, is_superuser=False):
         self.is_superuser = is_superuser

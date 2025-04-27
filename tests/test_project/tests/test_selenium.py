@@ -7,12 +7,12 @@ from selenium.webdriver.common.by import By
 
 from ..models import Book, Operator, Shelf
 from . import CreateMixin
-from .utils import ChannelsLiveServerTestCase, SeleniumTestMixin
+from .utils import SeleniumTestMixin
 
 
 class TestMenu(SeleniumTestMixin, ChannelsLiveServerTestCase):
     serve_static = True
-    
+
     def tearDown(self):
         super().tearDown()
         # Clear local storage
