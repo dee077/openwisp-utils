@@ -11,6 +11,8 @@ from .utils import ChannelsLiveServerTestCase, SeleniumTestMixin
 
 
 class TestMenu(SeleniumTestMixin, ChannelsLiveServerTestCase):
+    serve_static = True
+    
     def tearDown(self):
         super().tearDown()
         # Clear local storage

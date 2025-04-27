@@ -2,9 +2,6 @@ import json
 import os
 import uuid
 
-from channels.testing import (
-    ChannelsLiveServerTestCase as BaseChannelsLiveServerTestCase,
-)
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AnonymousUser
 from openwisp_utils.tests import SeleniumTestMixin as BaseSeleniumTestMixin
@@ -197,8 +194,6 @@ class SeleniumTestMixin(BaseSeleniumTestMixin, TestConfigMixin):
         self.wait_for_visibility(By.CSS_SELECTOR, f".{filter_class} .filter-options")
 
 
-class ChannelsLiveServerTestCase(BaseChannelsLiveServerTestCase):
-    server_static = True
 
 
 class MockUser:
