@@ -1,4 +1,6 @@
 from unittest import expectedFailure
+
+from channels.testing import ChannelsLiveServerTestCase
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium.common.exceptions import JavascriptException, NoSuchElementException
@@ -362,6 +364,7 @@ class TestMenu(SeleniumTestMixin, ChannelsLiveServerTestCase):
 
 
 class TestBasicFilter(SeleniumTestMixin, ChannelsLiveServerTestCase, CreateMixin):
+    server_static = True
     shelf_model = Shelf
     book_model = Book
 
@@ -507,6 +510,7 @@ class TestBasicFilter(SeleniumTestMixin, ChannelsLiveServerTestCase, CreateMixin
 
 
 class TestInputFilters(SeleniumTestMixin, CreateMixin, ChannelsLiveServerTestCase):
+    server_static = True
     shelf_model = Shelf
 
     def test_input_filters(self):
@@ -617,6 +621,7 @@ class TestDashboardCharts(SeleniumTestMixin, CreateMixin, ChannelsLiveServerTest
 class TestAutocompleteFilter(
     SeleniumTestMixin, CreateMixin, ChannelsLiveServerTestCase
 ):
+    server_static = True
     shelf_model = Shelf
     book_model = Book
 
@@ -714,6 +719,8 @@ class TestAutocompleteFilter(
 
 
 class TestFirefoxSeleniumHelpers(SeleniumTestMixin, ChannelsLiveServerTestCase):
+    serve_static = True
+
     def setUp(self):
         super().setUp()
         self.login()
@@ -752,7 +759,7 @@ class TestFirefoxSeleniumHelpers(SeleniumTestMixin, ChannelsLiveServerTestCase):
 
 
 class TestChromeSeleniumHelpers(SeleniumTestMixin, StaticLiveServerTestCase):
-    browser = 'chrome'
+    browser = "chrome"
 
     def test_get_browser_logs(self):
         self.assertEqual(self.get_browser_logs(), [])
