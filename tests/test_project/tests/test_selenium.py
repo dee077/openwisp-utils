@@ -1,5 +1,6 @@
 from unittest import expectedFailure
 
+from channels.testing import ChannelsLiveServerTestCase
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.urls import reverse
 from selenium.common.exceptions import JavascriptException, NoSuchElementException
@@ -11,7 +12,9 @@ from . import CreateMixin
 from .utils import SeleniumTestMixin
 
 
-class TestMenu(SeleniumTestMixin, StaticLiveServerTestCase):
+class TestMenu(SeleniumTestMixin, ChannelsLiveServerTestCase):
+    serve_static = True
+
     def tearDown(self):
         super().tearDown()
         # Clear local storage
@@ -360,7 +363,8 @@ class TestMenu(SeleniumTestMixin, StaticLiveServerTestCase):
         self.web_driver.set_window_size(1366, 768)
 
 
-class TestBasicFilter(SeleniumTestMixin, StaticLiveServerTestCase, CreateMixin):
+class TestBasicFilter(SeleniumTestMixin, ChannelsLiveServerTestCase, CreateMixin):
+    server_static = True
     shelf_model = Shelf
     book_model = Book
 
@@ -505,7 +509,8 @@ class TestBasicFilter(SeleniumTestMixin, StaticLiveServerTestCase, CreateMixin):
             self.assertEqual(paginator.get_attribute("innerText"), "1 book")
 
 
-class TestInputFilters(SeleniumTestMixin, CreateMixin, StaticLiveServerTestCase):
+class TestInputFilters(SeleniumTestMixin, CreateMixin, ChannelsLiveServerTestCase):
+    server_static = True
     shelf_model = Shelf
 
     def test_input_filters(self):
@@ -595,7 +600,7 @@ class TestInputFilters(SeleniumTestMixin, CreateMixin, StaticLiveServerTestCase)
             self.find_element(By.XPATH, user_xpath)
 
 
-class TestDashboardCharts(SeleniumTestMixin, CreateMixin, StaticLiveServerTestCase):
+class TestDashboardCharts(SeleniumTestMixin, CreateMixin, ChannelsLiveServerTestCase):
     def setUp(self):
         super().setUp()
         self.web_driver.set_window_size(1600, 768)
@@ -613,7 +618,10 @@ class TestDashboardCharts(SeleniumTestMixin, CreateMixin, StaticLiveServerTestCa
         self.assertEqual(annotation_text.text, "0")
 
 
-class TestAutocompleteFilter(SeleniumTestMixin, CreateMixin, StaticLiveServerTestCase):
+class TestAutocompleteFilter(
+    SeleniumTestMixin, CreateMixin, ChannelsLiveServerTestCase
+):
+    server_static = True
     shelf_model = Shelf
     book_model = Book
 
@@ -710,7 +718,9 @@ class TestAutocompleteFilter(SeleniumTestMixin, CreateMixin, StaticLiveServerTes
             )
 
 
-class TestFirefoxSeleniumHelpers(SeleniumTestMixin, StaticLiveServerTestCase):
+class TestFirefoxSeleniumHelpers(SeleniumTestMixin, ChannelsLiveServerTestCase):
+    serve_static = True
+
     def setUp(self):
         super().setUp()
         self.login()
