@@ -79,7 +79,8 @@ jobs:
         pip install -e .[qa,rest,selenium]
         pip install ${{ matrix.django-version }}
         sudo npm install -g prettier
-        pip install -e .[channels]
+        pip uninstall channels channels-redis daphne -y
+        pip install -e ".[channels]"
         pip show channels
 
     - name: QA checks
