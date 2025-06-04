@@ -76,9 +76,10 @@ jobs:
       run: |
         pip install -U pip wheel setuptools
         pip install -U -r requirements-test.txt
-        pip install -e .[channels,qa,rest,selenium]
+        pip install -e .[qa,rest,selenium]
         pip install ${{ matrix.django-version }}
         sudo npm install -g prettier
+        pip install -e .[channels]
         pip show channels
 
     - name: QA checks
