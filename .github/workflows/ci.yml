@@ -79,6 +79,7 @@ jobs:
         pip install -e .[channels,qa,rest,selenium]
         pip install ${{ matrix.django-version }}
         sudo npm install -g prettier
+        pip show channels
 
     - name: QA checks
       run: ./run-qa-checks
